@@ -22,6 +22,11 @@ get ('/albums/:id') do
   erb(:album)
 end
 
+# get ('/albums/:name') do
+#   @album = Album.search(params[:name])
+#   erb(:album)
+# end
+
 post ('/albums') do
   name = params[:album_name]
   year = params[:album_year]
@@ -54,4 +59,16 @@ end
 
 get ('/custom_route') do
   erb(:custom_route)
+end
+
+get ('/search_album') do
+  @albums = Album.all
+  erb(:albums)
+end
+
+post ('/query_album') do
+  # "Hello world"
+  @albums = Album.search(params[:name])
+  # binding.pry
+  erb(:search_album)
 end

@@ -6,7 +6,7 @@
   <ul>
     <% @albums.each do |album| %>
         <li><a href="/albums/<%= album.id %>"><%= album.name %></a></li>
-        
+
       <% end %>
   </ul>
 <% else %>
@@ -15,11 +15,11 @@
 
 <a href="/albums/new">Add a new album</a>
 <hr>
-<form action="/albums">
+<form action="/query_album" method="post">
   <div class="form-group">
     <label for="search">Search</label>
-    <input id="search" name="search" class="form-control" type="text">
+    <input id="search" name="name" class="form-control" type="text">
   </div>
 
-  <button type="submit" class="btn">Go!</button>
+  <button type="submit" class="btn"> Go!</button>
 </form>
