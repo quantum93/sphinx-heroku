@@ -20,7 +20,13 @@ end
 
 get ('/sphinx/question2') do
   "question for next riddle here"
-  erb(:question2)
+  input = params[:question1]
+  @answer = q1(input)
+  if @answer
+    erb(:question2)
+  else
+    erb(:fail)
+  end
 end
 get ('/sphinx/question3') do
   "question for last riddle here"
