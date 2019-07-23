@@ -1,74 +1,36 @@
 require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
-require('./lib/albums.rb')
+require('./lib/sphinx.rb')
 
 get('/') do
-  @albums = Album.all
-  erb(:albums)
+"Home"
+erb(:sphinx)
+
 end
 
-get('/albums') do
-  @albums = Album.all
-  erb(:albums)
+get('/sphinx') do
+  "sphinx intro page"
+  erb(:sphinx)
 end
 
-get ('/albums/new') do
-  erb(:new_album)
+get ('/sphinx/question1') do
+"question for first riddle here"
 end
 
-get ('/albums/:id') do
-  @album = Album.find(params[:id].to_i())
-  erb(:album)
+get ('/sphinx/question2') do
+"question for next riddle here"
+end
+get ('/sphinx/question3') do
+"question for last riddle here"
 end
 
-# get ('/albums/:name') do
-#   @album = Album.search(params[:name])
-#   erb(:album)
-# end
-
-post ('/albums') do
-  name = params[:album_name]
-  year = params[:album_year]
-  genre = params[:album_genre]
-  artist = params[:album_artist]
-  album = Album.new(name, year, artist, genre, nil)
-  album.save()
-  @albums = Album.all()
-  erb(:albums)
+get ('/sphinx/success') do
+"user has passed the gates and entered thebes"
 end
 
-get ('/albums/:id/edit') do
-  @album = Album.find(params[:id].to_i())
-  erb(:edit_album)
+get ('/sphinx/fail') do
+"user has failed the test of knowledge"
 end
 
-patch ('/albums/:id') do
-  @album = Album.find(params[:id].to_i())
-  @album.update(params[:name])
-  @albums = Album.all
-  erb(:albums)
-end
-
-delete ('/albums/:id') do
-  @album = Album.find(params[:id].to_i())
-  @album.delete()
-  @albums = Album.all
-  erb(:albums)
-end
-
-get ('/custom_route') do
-  erb(:custom_route)
-end
-
-get ('/search_album') do
-  @albums = Album.all
-  erb(:albums)
-end
-
-post ('/query_album') do
-  # "Hello world"
-  @albums = Album.search(params[:name])
-  # binding.pry
-  erb(:search_album)
-end
+#-----------------------------
